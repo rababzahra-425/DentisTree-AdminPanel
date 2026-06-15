@@ -1,0 +1,579 @@
+/* 
+
+  rgb(155, 154, 154);
+  #e5e5e56b
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #eee;
+  padding: 18px 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.sidebar-logo {
+  font-size: 22px;
+}
+
+.sidebar-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+}
+
+
+.sidebar-section-title {
+  font-size: 11px;
+  color: #999;
+  margin: 14px 10px 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.sidebar-item:hover {
+  background: #f5f7fb;
+}
+
+
+.sidebar-icon {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.sidebar-label {
+  font-size: 14px;
+  color: #333;
+}
+
+.sidebar-item.active {
+  background: #eaf4ff;
+  color: #3498db;
+}
+
+.sidebar-item.active .sidebar-label {
+  color: #3498db;
+  font-weight: 500;
+}
+
+
+.sidebar-nav {
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 4px;
+}
+
+ */
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* ══════════════════════════════════════════════════════════════
+   GLOBAL RESET
+══════════════════════════════════════════════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+  FIX 1 — Remove `overflow: hidden` from html/body/#root.
+  The old code had `overflow: hidden` here, which caused the viewport
+  to clip the main content when devtools opened and shrank the window.
+  Instead, let the inner containers manage their own scroll.
+*/
+html, body, #root {
+  height: 100%;
+  /* overflow: hidden; ← REMOVED: was clipping content on narrow viewports */
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+/* ── CSS Variables ── */
+.dt-root {
+  --white:       #ffffff;
+  --bg:          #f4f7fd;
+  --surface:     #ffffff;
+  --border:      #e8edf5;
+  --acc:         #2563eb;
+  --acc-light:   #eff6ff;
+  --acc-mid:     #bfdbfe;
+  --acc-dark:    #1d4ed8;
+  --text-h:      #0f172a;
+  --text-b:      #475569;
+  --text-m:      #94a3b8;
+  --sidebar-w:   256px;
+  --font:        'Outfit', sans-serif;
+  font-family: var(--font);
+
+  /*
+    FIX 2 — `.dt-root` must be `display: contents` (or removed entirely).
+    The Sidebar JSX wraps everything in <div className="dt-root"><div className="dt-sidebar">…</div></div>.
+    Because `.dt-root` is a flex child of `.app-container`, it was the thing
+    getting the flex sizing — NOT the sidebar itself. The sidebar was then
+    positioned: fixed relative to the viewport, but `.dt-root` still occupied
+    its own space as a ghost box, confusing the layout.
+
+    `display: contents` makes `.dt-root` invisible to the flex/grid algorithm —
+    its children (.dt-sidebar) are treated as direct children of .app-container.
+    This means the fixed sidebar's placeholder width is properly accounted for.
+  */
+  display: contents;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   APP SHELL
+══════════════════════════════════════════════════════════════ */
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  /*
+    FIX 3 — Remove `overflow: hidden` from .app-container.
+    This was the PRIMARY cause of content being clipped behind the sidebar.
+    When devtools open and viewport narrows, the flex container was hiding
+    the overflow instead of letting .main-content scroll horizontally.
+  */
+  /* overflow: hidden; ← REMOVED */
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SIDEBAR — Fixed, Never Moves
+   (Do not change — sidebar logic is correct as-is)
+══════════════════════════════════════════════════════════════ */
+.dt-sidebar {
+  width: var(--sidebar-w, 256px);
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  background: var(--surface, #ffffff);
+  border-right: 1px solid var(--border, #e8edf5);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  overflow: hidden;
+  box-shadow: 2px 0 20px rgba(37, 99, 235, 0.05);
+  transition: background 0.3s, border-color 0.3s;
+  flex-shrink: 0;
+}
+
+/* ── Brand ── */
+.dt-brand {
+  padding: 20px 20px 16px 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--border, #e8edf5);
+  flex-shrink: 0;
+  background: var(--surface, #ffffff);
+  min-height: 72px;
+}
+
+.dt-logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dt-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dt-brand-name {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--text-h, #0f172a);
+  letter-spacing: -0.3px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.dt-brand-tag {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-m, #94a3b8);
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  margin-top: 3px;
+  white-space: nowrap;
+}
+
+/* ── Nav — Only This Part Scrolls ── */
+.dt-nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 6px 8px 16px;
+  scrollbar-width: thin;
+  scrollbar-color: #e2e8f0 transparent;
+  overscroll-behavior: contain;
+}
+
+.dt-nav::-webkit-scrollbar { width: 3px; }
+.dt-nav::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 99px; }
+
+/* ── Category Label ── */
+.dt-group { margin-top: 4px; }
+
+.dt-cat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 8px 5px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: var(--text-m, #94a3b8);
+  user-select: none;
+}
+
+.dt-cat::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border, #e8edf5);
+}
+
+/* ── Nav Item ── */
+.dt-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  padding: 9.5px 12px;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  text-align: left;
+  margin-bottom: 1px;
+  position: relative;
+  outline: none;
+  font-family: var(--font, 'Outfit', sans-serif);
+}
+
+.dt-item:hover { background: var(--bg, #f4f7fd); }
+.dt-item:hover .dt-icon { color: var(--acc, #2563eb); }
+.dt-item:hover .dt-label { color: var(--text-h, #0f172a); }
+
+.dt-item.active {
+  background: var(--acc-light, #eff6ff);
+  border-left: 3px solid var(--acc, #2563eb);
+  padding-left: 9px;
+}
+
+.dt-item.active .dt-icon { color: var(--acc, #2563eb); }
+.dt-item.active .dt-label { color: var(--acc, #2563eb); font-weight: 600; }
+
+.dt-item.active::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--acc, #2563eb);
+  opacity: 0.5;
+}
+
+.dt-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--text-m, #94a3b8);
+  transition: color 0.15s;
+}
+
+.dt-label {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--text-b, #475569);
+  transition: color 0.15s;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Footer — Always Pinned To Bottom ── */
+.dt-footer {
+  flex-shrink: 0;
+  padding: 11px 14px;
+  border-top: 1px solid var(--border, #e8edf5);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg, #f4f7fd);
+  min-height: 56px;
+}
+
+.dt-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #dbeafe, #93c5fd);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #1d4ed8;
+  flex-shrink: 0;
+  border: 2px solid #bfdbfe;
+  font-family: var(--font, 'Outfit', sans-serif);
+}
+
+.dt-user-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-h, #0f172a);
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dt-user-role {
+  font-size: 10.5px;
+  color: var(--text-m, #94a3b8);
+  margin-top: 1.5px;
+  white-space: nowrap;
+}
+
+.dt-settings-btn {
+  margin-left: auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border, #e8edf5);
+  background: var(--surface, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.14s, border-color 0.14s, color 0.14s;
+  color: var(--text-m, #94a3b8);
+  flex-shrink: 0;
+}
+
+.dt-settings-btn:hover {
+  background: var(--acc-light, #eff6ff);
+  border-color: var(--acc-mid, #bfdbfe);
+  color: var(--acc, #2563eb);
+}
+
+.dt-settings-btn svg { width: 14px; height: 14px; }
+
+.dt-footer-compact {
+  justify-content: space-between;
+}
+
+.dt-footer-hint {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-m, #94a3b8);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MAIN CONTENT — THE CORE FIX
+══════════════════════════════════════════════════════════════ */
+.admin-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  min-width: 0;
+}
+
+.admin-layout-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.main-content {
+  /*
+    FIX 4 — `margin-left` pushes content right of the fixed sidebar.
+    The sidebar is `position: fixed` so it's out of normal flow.
+    We must manually offset the main content by the sidebar width
+    so it doesn't sit underneath the sidebar.
+  */
+  margin-left: 256px; /* matches --sidebar-w */
+
+  /*
+    FIX 5 — `min-width: 0` is the single most important fix for
+    preventing content from sliding under the sidebar.
+
+    By default, a flex child's minimum width is its content size
+    (`min-width: auto`). This means the main content refuses to
+    shrink below its natural width. When the viewport narrows
+    (e.g. devtools open), instead of shrinking, it overflows and
+    slides LEFT — directly under the fixed sidebar.
+
+    Setting `min-width: 0` tells the flex algorithm: "you are
+    allowed to make this element as narrow as the viewport demands."
+    The overflow-x: auto below then adds a scrollbar instead.
+  */
+  min-width: 0;
+
+  /*
+    FIX 6 — `flex: 1` makes this div consume all remaining
+    horizontal space after the sidebar's ghost placeholder.
+    Combined with min-width: 0, it will shrink gracefully.
+  */
+  flex: 1;
+
+  height: 100vh;
+
+  /*
+    FIX 7 — `overflow-y: auto` lets the page content scroll vertically.
+    `overflow-x: auto` lets tables wider than the viewport scroll
+    horizontally with a scrollbar, instead of squishing or clipping.
+  */
+  overflow-y: auto;
+  overflow-x: auto;
+
+  background: var(--bg, #f4f7fd);
+  overscroll-behavior: contain;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   GLOBAL TABLE RESPONSIVE FIX
+   These rules apply to every page's table automatically.
+   No need to change individual component files.
+══════════════════════════════════════════════════════════════ */
+
+/*
+  FIX 8 — Any element with class ending in "-table-wrap", "tablecontainer",
+  or "table-wrap" gets overflow-x: auto so tables scroll horizontally
+  instead of squishing their cells.
+  This covers: sup-tablecontainer, tablecontainer, fr-table-wrap, etc.
+*/
+[class*="tablecontainer"],
+[class*="table-wrap"],
+[class*="-table-wrap"],
+.sup-tablecontainer,
+.tablecontainer,
+.fr-table-wrap,
+.inv-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+}
+
+/*
+  FIX 9 — Table headers and cells must never wrap text.
+  This prevents the "IMAGESERVICESDESCRIPTION" squish effect
+  where header text stacks vertically into an unreadable blob.
+  The table scrolls horizontally instead of compressing.
+*/
+table th,
+table td {
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+══════════════════════════════════════════════════════════════ */
+
+/* Tablet: narrow sidebar */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .main-content {
+    margin-left: 220px;
+  }
+  .dt-sidebar {
+    width: 220px;
+  }
+}
+
+/* Mobile: sidebar slides off-screen, content takes full width */
+@media (max-width: 768px) {
+  .dt-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 200;
+  }
+
+  .dt-sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  /*
+    FIX 10 — On mobile, sidebar is hidden so margin-left returns to 0.
+    Content fills the full viewport width.
+  */
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  /* Overlay behind open mobile sidebar */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 150;
+  }
+
+  .sidebar-overlay.active {
+    display: block;
+  }
+}

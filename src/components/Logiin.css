@@ -1,0 +1,361 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: #2356ef;
+  --bg-theme: #eef7ff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+}
+
+
+.login-page-wrapper {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-theme);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+
+.login-card {
+  background: white;
+  padding: 45px;
+  border-radius: 28px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 420px; 
+  box-sizing: border-box;
+  position: relative;
+}
+
+.clinic-brand-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.brand-icon {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  
+}
+
+.brand-text-img {
+  height: 26px;
+  object-fit: contain;
+}
+
+.header-divider {
+  width: 45px;
+  height: 4px;
+  background: var(--primary);
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+.login-header h2 {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 6px 0;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-bottom: 30px;
+}
+
+.input-group {
+  margin-bottom: 22px;
+  position: relative;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  letter-spacing: 0.8px;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px 16px;
+  padding-right: 45px; 
+  background: #f9fafb;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(35, 86, 239, 0.1); 
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  z-index: 10;
+}
+
+.signin-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: opacity 0.2s;
+}
+
+.signin-btn:hover {
+  opacity: 0.9;
+}
+
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 30px 20px;
+    border-radius: 20px;
+  }
+  
+  .login-header h2 {
+    font-size: 1.4rem;
+  }
+  
+  .brand-icon {
+    width: 45px;
+    height: 45px;
+  }
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* 1. Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #2356ef;
+  --bg-theme: #eef7ff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+}
+
+body {
+  background-color: var(--bg-theme);
+  min-height: 100vh;
+}
+
+/* 2. Page Wrapper - Universal Centering */
+.login-page-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  padding: 20px;
+  overflow-y: auto; 
+}
+
+/* 3. Login Card - Fully Dynamic */
+.login-card {
+  background: white;
+  padding: clamp(25px, 5vw, 40px); /* Screen ke hisab se padding adjust hogi */
+  border-radius: 28px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 410px; /* Laptop par standard size */
+  min-width: 280px; /* Mobile par collapse nahi hoga */
+  flex-shrink: 0; 
+  position: relative;
+  margin: auto;
+}
+
+.clinic-brand-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.brand-icon {
+  width: clamp(40px, 10vw, 48px);
+  height: auto;
+  object-fit: contain;
+}
+
+.brand-text-img {
+  height: clamp(18px, 5vw, 22px);
+  width: auto;
+  object-fit: contain;
+}
+
+.header-divider {
+  width: 45px;
+  height: 4px;
+  background: var(--primary);
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.login-header h2 {
+  font-size: clamp(1.3rem, 4vw, 1.5rem);
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+/* 4. Input Groups */
+.input-group {
+  margin-bottom: 1.2rem;
+  width: 100%;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  padding-right: 48px; /* Extra space for our custom eye icon */
+  background: #f9fafb;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+/* -------------------------------------------------- */
+/* FIX: 2 Aankhain khatam karne ka code (Browser Eye Hide) */
+.input-group input::-webkit-reveal,
+.input-group input::-webkit-clear-button,
+.input-group input::-ms-reveal {
+  display: none !important;
+}
+/* -------------------------------------------------- */
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(35, 86, 239, 0.08);
+}
+
+/* 5. Custom Eye Button - Perfect Positioning */
+.password-toggle-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  padding: 8px;
+  z-index: 10;
+}
+
+.password-toggle-btn:hover {
+  color: var(--primary);
+}
+
+.password-toggle-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* 6. Sign-in Button */
+.signin-btn {
+  width: 100%;
+  padding: 15px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.2s;
+}
+
+.signin-btn:hover {
+  background: #1a46d1;
+}
+
+/* 7. Responsive Fixes for Small Laptops & Mobiles */
+@media (max-height: 680px) {
+  .login-card {
+    padding: 25px 30px;
+  }
+  .subtitle { margin-bottom: 1rem; }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 25px 20px;
+    border-radius: 20px;
+  }
+}

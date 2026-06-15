@@ -1,0 +1,986 @@
+/* ══════════════════════════════════════════════════════
+   Prescription.css — DentisTree Dental Clinic
+   Professional Healthcare UI (100% Original Classes Match)
+══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+:root {
+  --rx-blue:        #1a5276;
+  --rx-blue-light:  #2e86c1;
+  --rx-blue-pale:   #d6eaf8;
+  --rx-teal:        #117a65;
+  --rx-teal-light:  #1abc9c;
+  --rx-teal-pale:   #d5f5e3;
+  --rx-gold:        #d4a017;
+  --rx-red:         #c0392b;
+  --rx-red-pale:    #fdecea;
+  --rx-bg:          #f4f6f9;
+  --rx-surface:     #ffffff;
+  --rx-border:      #dce3ed;
+  --rx-text:        #1c2b3a;
+  --rx-muted:       #6b7c93;
+  --rx-shadow:      0 2px 12px rgba(26, 82, 118, 0.09);
+  --rx-shadow-lg:   0 8px 32px rgba(26, 82, 118, 0.14);
+  --rx-radius:      12px;
+  --rx-radius-sm:   8px;
+  --rx-font:        'DM Sans', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.rx-page {
+  font-family: var(--rx-font);
+  background: #eef7ff;
+  min-height: 100vh;
+  color: var(--rx-text);
+  padding: 0 0 4rem 0;
+}
+
+/* ─── LOADING ─── */
+.rx-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 1rem;
+  color: var(--rx-muted);
+}
+.rx-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--rx-blue-pale);
+  border-top-color: var(--rx-blue);
+  border-radius: 50%;
+  animation: rx-spin 0.8s linear infinite;
+}
+@keyframes rx-spin { to { transform: rotate(360deg); } }
+
+/* ─── TOAST NOTIFICATION ─── */
+.rx-toast {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--rx-radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: var(--rx-shadow-lg);
+  animation: rx-slide-in 0.3s ease;
+}
+.rx-toast--success { background: #eafaf1; border: 1px solid #82e0aa; color: #1e8449; }
+.rx-toast--error { background: var(--rx-red-pale); border: 1px solid #f1948a; color: var(--rx-red); }
+@keyframes rx-slide-in {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ─── HEADER BAR ─── */
+.rx-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2rem;
+  background: var(--rx-surface);
+  border-bottom: 1px solid var(--rx-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(26,82,118,0.07);
+}
+
+.rx-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.2rem;
+  background: transparent;
+  border: 1.5px solid var(--rx-border);
+  border-radius: var(--rx-radius-sm);
+  color: var(--rx-text);
+  font-family: var(--rx-font);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.rx-back-btn:hover {
+  background: var(--rx-blue-pale);
+  border-color: var(--rx-blue-light);
+  color: var(--rx-blue);
+}
+.rx-header-actions { display: flex; gap: 0.75rem; }
+
+/* ─── BUTTONS ─── */
+.rx-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--rx-radius-sm);
+  font-family: var(--rx-font);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.rx-btn--primary { background: #1d4ed8; color: #fff; }
+.rx-btn--primary:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(26,82,118,0.3); }
+
+.rx-btn--teal { background: #1d4ed8; color: #fff; }
+.rx-btn--teal:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(17,122,101,0.3); }
+
+.rx-btn--outline { background: transparent; border: 1.5px solid var(--rx-border); color: var(--rx-text); }
+.rx-btn--outline:hover { border-color: var(--rx-blue); color: var(--rx-blue); background: var(--rx-blue-pale); }
+
+.rx-btn--ghost { background: transparent; border: 1.5px solid var(--rx-border); color: var(--rx-muted); }
+.rx-btn--ghost:hover { background: #f0f0f0; }
+.rx-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; }
+
+.rx-icon-btn {
+  width: 34px; height: 34px; border: none; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: all 0.2s;
+}
+.rx-icon-btn--edit { background: var(--rx-blue-pale); color: var(--rx-blue); }
+.rx-icon-btn--edit:hover { background: var(--rx-blue); color: #fff; }
+.rx-icon-btn--del { background: var(--rx-red-pale); color: var(--rx-red); }
+.rx-icon-btn--del:hover { background: var(--rx-red); color: #fff; }
+
+/* ─── CLINIC + PATIENT INFO CARD ─── */
+.rx-info-card {
+  margin: 1.75rem 2rem 0;
+  background: var(--rx-surface);
+  border-radius: var(--rx-radius);
+  box-shadow: var(--rx-shadow);
+  overflow: hidden;
+  border: 1px solid var(--rx-border);
+}
+
+.rx-clinic-headings { margin: 40px; }
+
+.rx-clinic-header {
+  display: flex; align-items: center; gap: 1rem; background: #dce6f0; color: black; padding-bottom: 5px; margin: 10px 3px;
+}
+.rx-clinic-logo {
+  width: 52px; height: 52px; background: rgba(255,255,255,0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0;
+}
+.rx-clinic-name { font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-weight: 400; letter-spacing: 0.01em; }
+.rx-clinic-sub { font-size: 0.82rem; opacity: 0.8; margin-top: 2px; }
+
+.rx-divider { height: 1px; background: var(--rx-border); }
+
+.rx-patient-grid {
+  display: grid; grid-template-columns: auto 1fr 1fr; gap: 0; padding: 1.5rem 2rem; align-items: start;
+}
+.rx-patient-avatar-wrap { padding-right: 1.5rem; }
+.rx-patient-avatar {
+  width: 64px; height: 64px; background: linear-gradient(135deg, #dbeafe, #bfdbfe); color: #1d4ed8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 1.8rem; font-weight: 700; border: 3px solid var(--rx-blue-pale);
+}
+
+.rx-info-row { display: flex; flex-direction: column; gap: 0.1rem; padding: 0.45rem 0; border-bottom: 1px solid #f0f3f7; }
+.rx-info-row:last-child { border-bottom: none; }
+.rx-info-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--rx-muted); }
+.rx-info-val { font-size: 0.92rem; font-weight: 500; color: var(--rx-text); }
+.rx-badge { display: inline-block; background: var(--rx-blue-pale); color: var(--rx-blue); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; }
+
+/* ─── TABS ─── */
+.rx-tabs {
+  display: flex; gap: 0; margin: 1.75rem 2rem 0; background: var(--rx-surface); border-radius: var(--rx-radius); border: 1px solid var(--rx-border); padding: 0.4rem; box-shadow: var(--rx-shadow);
+}
+.rx-tab {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1rem; border: none; background: transparent; border-radius: 8px; font-family: var(--rx-font); font-size: 0.9rem; font-weight: 500; color: var(--rx-muted); cursor: pointer; transition: all 0.25s;
+}
+.rx-tab:hover { color: black; background: var(--rx-bg); }
+.rx-tab--active { background: linear-gradient(135deg, #dbeafe, #bfdbfe); color: blue; box-shadow: 0 2px 8px rgba(26,82,118,0.25); }
+.rx-tab-count { background: rgba(255,255,255,0.25); color: inherit; border-radius: 12px; padding: 0.1rem 0.5rem; font-size: 0.78rem; font-weight: 700; }
+.rx-tab:not(.rx-tab--active) .rx-tab-count { background: var(--rx-blue-pale); color: var(--rx-blue); }
+
+/* ─── SECTION ─── */
+.rx-section { margin: 1.5rem 2rem 0; }
+.rx-section-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.25rem; }
+.rx-section-title { font-family: 'DM Serif Display', serif; font-size: 1.35rem; font-weight: 400; color: var(--rx-text); display: flex; align-items: center; gap: 0.5rem; }
+.rx-section-title i { color: var(--rx-blue); }
+.rx-section-sub { font-size: 0.83rem; color: var(--rx-muted); margin-top: 0.3rem; }
+
+/* ─── FORM CARD ─── */
+.rx-form-card {
+  background: var(--rx-surface); border: 1.5px solid var(--rx-blue-pale); border-left: 4px solid var(--rx-blue); border-radius: var(--rx-radius); padding: 1.75rem; margin-bottom: 1.5rem; box-shadow: var(--rx-shadow); animation: rx-fade-down 0.3s ease;
+}
+.rx-form-card--teal { border-color: var(--rx-teal-pale); border-left-color: #1d4ed8; }
+@keyframes rx-fade-down { from { opacity: 0; transform: translateY(-12px); } to   { opacity: 1; transform: translateY(0); } }
+
+.rx-form-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.rx-form-header h3 { font-size: 1rem; font-weight: 600; color: var(--rx-text); }
+.rx-form-close { width: 32px; height: 32px; border: none; background: #f0f3f7; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--rx-muted); transition: all 0.2s; }
+.rx-form-close:hover { background: var(--rx-red-pale); color: var(--rx-red); }
+
+.rx-form-timestamp { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--rx-bg); border: 1px solid var(--rx-border); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.8rem; color: var(--rx-muted); margin-bottom: 1.25rem; }
+.rx-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.rx-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.rx-field--full { grid-column: 1 / -1; }
+.rx-field label { font-size: 0.8rem; font-weight: 600; color: var(--rx-text); text-transform: uppercase; letter-spacing: 0.05em; }
+.rx-required { color: var(--rx-red); margin-left: 2px; }
+.rx-field-hint { font-size: 0.78rem; color: var(--rx-muted); font-style: italic; line-height: 1.4; }
+
+.rx-field input, .rx-field select { padding: 0.65rem 0.9rem; border: 1.5px solid var(--rx-border); border-radius: var(--rx-radius-sm); font-family: var(--rx-font); font-size: 0.88rem; color: var(--rx-text); background: var(--rx-surface); transition: border-color 0.2s; outline: none; }
+.rx-field input:focus, .rx-field select:focus { border-color: var(--rx-blue-light); box-shadow: 0 0 0 3px rgba(46,134,193,0.12); }
+
+.rx-textarea { width: 100%; padding: 1rem; border: 1.5px solid var(--rx-border); border-radius: var(--rx-radius-sm); font-family: 'Courier New', monospace; font-size: 0.88rem; line-height: 1.7; color: var(--rx-text); background: #fafcff; resize: vertical; outline: none; transition: border-color 0.2s; border-color: grey; }
+.rx-textarea:focus { border-color: var(--rx-blue-light); box-shadow: 0 0 0 3px rgba(46,134,193,0.12); background: #fff; }
+.rx-textarea--teal:focus { border-color: var(--rx-teal-light); box-shadow: 0 0 0 3px rgba(17,122,101,0.1); }
+.rx-textarea--lg { min-height: 200px; }
+
+.rx-form-actions { display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--rx-border); }
+
+/* ─── PRESCRIPTION CARDS ─── */
+.rx-cards { display: flex; flex-direction: column; gap: 1.25rem; }
+.rx-record-card { background: var(--rx-surface); border-radius: var(--rx-radius); border: 1px solid var(--rx-border); border-left: 4px solid var(--rx-blue); box-shadow: var(--rx-shadow); padding: 1.5rem; animation: rx-fade-up 0.35s ease; }
+@keyframes rx-fade-up { from { opacity: 0; transform: translateY(10px); } to   { opacity: 1; transform: translateY(0); } }
+
+.rx-record-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; }
+.rx-record-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
+.rx-record-index { display: inline-block; background: var(--rx-blue); color: #fff; padding: 0.2rem 0.7rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; }
+.rx-record-index--teal { background: var(--rx-teal); }
+.rx-record-timestamps { display: flex; gap: 0.75rem; color: var(--rx-muted); font-size: 0.8rem; }
+.rx-record-timestamps span { display: flex; align-items: center; gap: 0.3rem; }
+.rx-record-actions { display: flex; gap: 0.5rem; }
+
+.rx-record-meta-tags { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; padding: 0.85rem 1rem; background: #f8fafd; border-radius: var(--rx-radius-sm); border: 1px solid var(--rx-blue-pale); }
+.rx-meta-tag { display: flex; flex-direction: column; gap: 0.15rem; min-width: 140px; }
+.rx-meta-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--rx-blue); display: flex; align-items: center; gap: 0.25rem; }
+
+.rx-medicines-block { background: #fafcff; border: 1px solid var(--rx-blue-pale); border-radius: var(--rx-radius-sm); overflow: hidden; }
+.rx-medicines-block--teal { background: #f0fdf9; border-color: var(--rx-teal-pale); }
+.rx-medicines-label { padding: 0.6rem 1rem; background: var(--rx-blue-pale); color: var(--rx-blue); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; display: flex; align-items: center; gap: 0.4rem; }
+.rx-medicines-block--teal .rx-medicines-label { background: var(--rx-teal-pale); color: var(--rx-teal); }
+.rx-medicines-text { padding: 1rem; white-space: pre-wrap; font-family: 'Courier New', monospace; font-size: 0.88rem; line-height: 1.8; color: var(--rx-text); word-break: break-word; }
+
+.rx-linked-appt { margin-top: 0.85rem; font-size: 0.8rem; color: var(--rx-muted); display: flex; align-items: center; gap: 0.3rem; }
+
+/* ─── TIMELINE (Treatments) ─── */
+.rx-timeline { position: relative; padding-left: 2rem; }
+.rx-timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--rx-teal), var(--rx-teal-pale)); border-radius: 2px; }
+.rx-timeline-item { position: relative; margin-bottom: 1.25rem; }
+.rx-timeline-dot { position: absolute; left: -1.65rem; top: 1.3rem; width: 14px; height: 14px; background: var(--rx-teal); border-radius: 50%; border: 3px solid var(--rx-bg); box-shadow: 0 0 0 2px var(--rx-teal); z-index: 1; }
+.rx-timeline-card { background: var(--rx-surface); border-radius: var(--rx-radius); border: 1px solid var(--rx-border); border-left: 4px solid var(--rx-teal); box-shadow: var(--rx-shadow); padding: 1.5rem; animation: rx-fade-up 0.35s ease; }
+.rx-procedure-badge { display: inline-block; background: var(--rx-teal-pale); color: var(--rx-teal); padding: 0.2rem 0.7rem; border-radius: 20px; font-size: 0.76rem; font-weight: 600; border: 1px solid rgba(17,122,101,0.2); }
+.rx-handled-by { font-size: 0.83rem; color: var(--rx-muted); display: flex; align-items: center; gap: 0.35rem; margin-bottom: 0.85rem; }
+
+/* ─── EMPTY STATE ─── */
+.rx-empty { text-align: center; padding: 4rem 2rem; background: var(--rx-surface); border-radius: var(--rx-radius); border: 2px dashed var(--rx-border); }
+.rx-empty h3 { font-size: 1.1rem; font-weight: 600; color: var(--rx-text); margin: 1rem 0 0.4rem; }
+.rx-empty p { font-size: 0.87rem; color: var(--rx-muted); margin-bottom: 1.5rem; }
+.rx-empty-icon { width: 72px; height: 72px; background: var(--rx-blue-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--rx-blue); margin: 0 auto; }
+.rx-empty-icon--teal { background: linear-gradient(135deg, #dbeafe, #bfdbfe); color: #1d4ed8; }
+.rx-empty-state { text-align: center; padding: 6rem 2rem; color: var(--rx-muted); font-size: 1.1rem; }
+.rx-empty-state i { font-size: 3rem; display: block; margin-bottom: 1rem; }
+
+.print-only { display: none !important; }
+
+
+/* ══════════════════════════════════════════════════════
+   DARK MODE OVERRIDES (SAFE & INDEPENDENT)
+   Only triggers when [data-theme="dark"] is active
+══════════════════════════════════════════════════════ */
+
+[data-theme="dark"] .rx-page { background-color: #0f172a; }
+[data-theme="dark"] .rx-header { background: #1e293b; border-bottom-color: #334155; }
+[data-theme="dark"] .rx-back-btn { border-color: #334155; color: #94a3b8; }
+[data-theme="dark"] .rx-back-btn:hover { background: #253347; color: #3b82f6; }
+[data-theme="dark"] .rx-info-card, [data-theme="dark"] .rx-card-body, [data-theme="dark"] .rx-record-card, [data-theme="dark"] .rx-timeline-card { background: #1e293b; border-color: #334155; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); }
+[data-theme="dark"] .rx-clinic-header { background: #253347; }
+[data-theme="dark"] .rx-clinic-name { color: #f1f5f9; }
+[data-theme="dark"] .rx-clinic-sub { color: #94a3b8; }
+[data-theme="dark"] .rx-patient-avatar { background: #1e3a5f; color: #60a5fa; border-color: #1e293b; }
+[data-theme="dark"] .rx-divider { background: #334155; }
+[data-theme="dark"] .rx-info-row { border-bottom-color: #253347; }
+[data-theme="dark"] .rx-info-label { color: #64748b; }
+[data-theme="dark"] .rx-info-val { color: #cbd5e1; }
+[data-theme="dark"] .rx-badge { background: #1e3a5f; color: #60a5fa; }
+[data-theme="dark"] .rx-tabs { background: #1e293b; border-color: #334155; }
+[data-theme="dark"] .rx-tab { color: #94a3b8; }
+[data-theme="dark"] .rx-tab:hover { background: #253347; color: #f1f5f9; }
+[data-theme="dark"] .rx-tab--active { background: linear-gradient(135deg, #1e3a5f, #1d4ed8); color: #ffffff; }
+[data-theme="dark"] .rx-form-card { background: #1e293b; border-color: #334155; }
+[data-theme="dark"] .rx-form-header h3 { color: #f1f5f9; }
+[data-theme="dark"] .rx-form-timestamp { background: #253347; border-color: #334155; color: #94a3b8; }
+[data-theme="dark"] .rx-field label { color: #64748b; }
+[data-theme="dark"] .rx-field input, [data-theme="dark"] .rx-field select, [data-theme="dark"] .rx-textarea { background: #253347; border-color: #334155; color: #f1f5f9; }
+[data-theme="dark"] .rx-field input:focus, [data-theme="dark"] .rx-field select:focus, [data-theme="dark"] .rx-textarea:focus { background: #1e293b; border-color: #3b82f6; }
+[data-theme="dark"] .rx-form-actions { border-top-color: #334155; }
+[data-theme="dark"] .rx-section-title { color: #f1f5f9; }
+[data-theme="dark"] .rx-record-timestamps { color: #64748b; }
+[data-theme="dark"] .rx-record-meta-tags { background: #253347; border-color: #334155; }
+[data-theme="dark"] .rx-meta-label { color: #60a5fa; }
+[data-theme="dark"] .rx-meta-tag span:not(.rx-meta-label) { color: #cbd5e1; }
+[data-theme="dark"] .rx-medicines-block { background: #1e293b; border-color: #334155; }
+[data-theme="dark"] .rx-medicines-label { background: #253347; color: #60a5fa; }
+[data-theme="dark"] .rx-medicines-text { color: #cbd5e1; }
+[data-theme="dark"] .rx-handled-by { color: #94a3b8; }
+[data-theme="dark"] .rx-icon-btn--edit { background: #253347; color: #60a5fa; }
+[data-theme="dark"] .rx-icon-btn--del { background: #2d0d0d; color: #f87171; }
+[data-theme="dark"] .rx-btn--outline {
+    background: transparent;
+    border: 1.5px solid var(--rx-border);
+    color: white;
+}
+
+
+[data-theme="dark"] .rx-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #253347;
+    border-radius: var(--rx-radius);
+    border: 2px dashed grey;
+}
+/* ══════════════════════════════════════════════════════
+   TEXT-BASED EXECUTIVE PATIENT MEDICAL REPORT FOR PRINT
+══════════════════════════════════════════════════════ */
+@media print {
+  /* 1. Global App Layout Reset (Hides Sidebars, Action Headers & Navigation Blocks) */
+  .sidebar,
+  .dt-sidebar,
+  [class*="sidebar"],
+  [class*="dt-sidebar"],
+  .rx-header,
+  .rx-tabs,
+  .rx-back-bar,
+  .rx-header-actions,
+  .rx-record-actions,
+  .rx-form-card,
+  .rx-section-header,
+  .no-print,
+  nav,
+  header {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+  }
+
+  /* 2. Document Base Canvas Format */
+  body, 
+  html, 
+  #root,
+  .app-container,
+  .main-content,
+  [class*="main-content"],
+  .rx-page {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 11pt !important;
+    font-family: "Times New Roman", Times, serif !important; /* Formal clinical typewriter serif */
+    line-height: 1.6 !important;
+  }
+
+  .rx-page {
+    padding: 20mm 20mm !important; /* Professional document standards padding */
+    display: block !important;
+  }
+
+  /* 3. Formal Clinic Document Header Layout */
+  .rx-info-card {
+    margin: 0 0 30px 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+    display: block !important;
+  }
+
+  .rx-clinic-headings {
+    margin: 0 0 20px 0 !important;
+    text-align: center !important;
+    border-bottom: 2px solid #000000 !important;
+    padding-bottom: 8px !important;
+  }
+
+  .rx-clinic-header {
+    display: block !important;
+    background: transparent !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .rx-clinic-name {
+    font-size: 22pt !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    color: #000000 !important;
+  }
+
+  .rx-clinic-sub {
+    font-size: 10pt !important;
+    color: #444444 !important;
+    text-transform: uppercase !important;
+    margin-top: 2px !important;
+  }
+
+  /* 4. Structured Text Indentation for Patient Metadata */
+  .rx-patient-grid {
+    display: table !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin-bottom: 25px !important;
+    border-collapse: collapse !important;
+  }
+
+  .rx-patient-avatar-wrap {
+    display: none !important; /* Hides graphic avatar circle on physical paper format */
+  }
+
+  .rx-info-row {
+    display: table-row !important;
+    border: none !important;
+  }
+
+  .rx-info-label {
+    display: table-cell !important;
+    font-size: 11pt !important;
+    font-weight: bold !important;
+    color: #000000 !important;
+    padding: 4px 0 !important;
+    text-transform: capitalize !important;
+    width: 30% !important;
+  }
+
+  .rx-info-val {
+    display: table-cell !important;
+    font-size: 11pt !important;
+    color: #000000 !important;
+    padding: 4px 0 !important;
+    text-align: left !important;
+  }
+
+  .rx-badge {
+    background: transparent !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    font-weight: bold !important;
+  }
+
+  /* 5. Force Display All Hidden Content Rows Sequentially */
+  .rx-section,
+  .rx-cards,
+  .rx-timeline,
+  .print-only {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* Sub-Section Standard Typographic Alignment */
+  .print-section-header {
+    font-size: 14pt !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    border-bottom: 1.5px solid #000000 !important;
+    margin-top: 35px !important;
+    margin-bottom: 15px !important;
+    padding-bottom: 3px !important;
+    page-break-after: avoid !important;
+  }
+
+  /* 6. Text-Based Medical Prescription Format */
+  .rx-record-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-bottom: 30px !important;
+    page-break-inside: avoid !important;
+  }
+
+  .rx-record-header {
+    margin-bottom: 6px !important;
+  }
+
+  /* Convert graphics indexes to neat outline headers */
+  .rx-record-index {
+    background: transparent !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    font-size: 11pt !important;
+    font-weight: bold !important;
+    text-decoration: underline !important;
+  }
+  .rx-record-index::after {
+    content: ":" !important;
+  }
+
+  .rx-record-timestamps {
+    font-size: 10pt !important;
+    color: #555555 !important;
+  }
+
+  /* Structured Metadata Parameters Mapping */
+  .rx-record-meta-tags {
+    display: block !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 8px !important;
+  }
+
+  .rx-meta-tag {
+    display: block !important;
+    margin-bottom: 4px !important;
+    padding-left: 15px !important; /* Systematic block indentation */
+  }
+
+  .rx-meta-label {
+    display: inline !important;
+    font-size: 11pt !important;
+    font-weight: bold !important;
+    color: #000000 !important;
+    text-transform: capitalize !important;
+  }
+  .rx-meta-label::after {
+    content: " — " !important;
+  }
+
+  .rx-meta-tag span:not(.rx-meta-label) {
+    display: inline !important;
+    font-size: 11pt !important;
+    color: #111111 !important;
+  }
+
+  /* Preformatted Text Block Alignment */
+  .rx-medicines-block {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+
+  .rx-medicines-label {
+    font-size: 11pt !important;
+    font-weight: bold !important;
+    color: #000000 !important;
+    background: transparent !important;
+    padding: 0 0 0 15px !important;
+    text-transform: none !important;
+  }
+  .rx-medicines-label::after {
+    content: ":" !important;
+  }
+
+  .rx-medicines-text {
+    padding: 4px 0 0 30px !important; /* Deep text block indentation rules */
+    font-family: "Times New Roman", Times, serif !important;
+    font-size: 11pt !important;
+    line-height: 1.6 !important;
+    color: #000000 !important;
+  }
+
+  /* 7. Clinical Treatment Logs Timelines Alignment */
+  .rx-timeline {
+    padding-left: 0 !important;
+  }
+  .rx-timeline::before,
+  .rx-timeline-dot {
+    display: none !important; /* Hides system circles and graphical connectors */
+  }
+
+  .rx-timeline-item {
+    margin-bottom: 25px !important;
+    page-break-inside: avoid !important;
+  }
+
+  .rx-timeline-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .rx-procedure-badge {
+    background: transparent !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    font-weight: bold !important;
+    font-size: 11pt !important;
+    border: none !important;
+    text-decoration: underline !important;
+  }
+  .rx-procedure-badge::after {
+    content: ":" !important;
+  }
+
+  .rx-handled-by {
+    font-size: 10pt !important;
+    color: #444444 !important;
+    padding-left: 15px !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* General empty/fallback configurations descriptor override */
+  .rx-empty,
+  .rx-empty-state {
+    border: none !important;
+    background: transparent !important;
+    color: #000000 !important;
+    font-style: italic !important;
+    padding: 15px 0 !important;
+    text-align: left !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   STRICT MULTI-PAGE ACCOUNTING environment FOR PRINT
+   (FIXES 1-PAGE LIMIT AND REMOVES ALL SCROLLBARS)
+   ══════════════════════════════════════════════════════ */
+@media print {
+  /* 1. Reset dynamic heights on all top-level wrappers to break 1-page limits */
+  html, 
+  body, 
+  #root,
+  .app-container,
+  .main-content,
+  [class*="main-content"],
+  [class*="app-container"],
+  [class*="page-wrapper"],
+  .rx-page {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    width: 100% !important;
+    
+    /* CRITICAL FIXES: Height ko free aur overflow ko completely standard text flow me convert kiya */
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    position: static !important;
+    
+    font-size: 11pt !important;
+    font-family: "Times New Roman", Times, serif !important;
+    line-height: 1.6 !important;
+  }
+
+  .rx-page {
+    padding: 20mm 20mm !important; /* Formal clinical typewriter margins */
+    display: block !important;
+  }
+
+  /* 2. Remove Scrollbars Graphic Elements from Print Output Completely */
+  ::-webkit-scrollbar,
+  *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  * {
+    scrollbar-width: none !important;
+    overflow: visible !important;
+  }
+
+  /* 3. Global App Layout Force Clear (Hides Sidebars, Action Headers & Navigation Blocks) */
+  .sidebar,
+  .dt-sidebar,
+  [class*="sidebar"],
+  [class*="dt-sidebar"],
+  .rx-header,
+  .rx-tabs,
+  .rx-back-bar,
+  .rx-header-actions,
+  .rx-record-actions,
+  .rx-form-card,
+  .rx-section-header,
+  .no-print,
+  nav,
+  header {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+  }
+
+  /* 4. Formal Clinic Document Header Layout */
+  .rx-info-card {
+    margin: 0 0 30px 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  .rx-clinic-headings {
+    margin: 0 0 20px 0 !important;
+    text-align: center !important;
+    border-bottom: 2px solid #000000 !important;
+    padding-bottom: 8px !important;
+  }
+
+  .rx-clinic-header {
+    display: block !important;
+    background: transparent !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .rx-clinic-name {
+    font-size: 22pt !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    color: #000000 !important;
+  }
+
+  .rx-clinic-sub {
+    font-size: 10pt !important;
+    color: #444444 !important;
+    text-transform: uppercase !important;
+    margin-top: 2px !important;
+  }
+
+  /* 5. Structured Text Indentation for Patient Metadata */
+  .rx-patient-grid {
+    display: table !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin-bottom: 25px !important;
+    border-collapse: collapse !important;
+  }
+
+  .rx-patient-avatar-wrap {
+    display: none !important; /* Hides graphic avatar circle on physical paper format */
+  }
+
+  .rx-info-row {
+    display: table-row !important;
+    border: none !important;
+  }
+
+  .rx-info-label {
+    display: table-cell !important;
+    font-size: 11pt !important;
+    font-weight: bold !important;
+    color: #000000 !important;
+    padding: 4px 0 !important;
+    text-transform: capitalize !important;
+    width: 30% !important;
+  }
+
+  .rx-info-val {
+    display: table-cell !important;
+    font-size: 11pt !important;
+    color: #000000 !important;
+    padding: 4px 0 !important;
+    text-align: left !important;
+  }
+
+  .rx-badge {
+    background: transparent !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    font-weight: bold !important;
+  }
+
+  /* 6. Force Display All Hidden Content Rows Sequentially */
+  .rx-section,
+  .rx-cards,
+  .rx-timeline,
+  .rx-print-report-wrapper {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: 100% !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Sub-Section Standard Typographic Alignment */
+  .print-section-header {
+    font-size: 14pt !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    border-bottom: 1.5px solid #000000 !important;
+    margin-top: 35px !important;
+    margin-bottom: 15px !important;
+    padding-bottom: 3px !important;
+    page-break-after: avoid !important; /* Rules ensuring titles don't stay at page bottom */
+  }
+
+  /* 7. Text-Based Medical Prescription Format */
+  .rx-record-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-bottom: 30px !important;
+    overflow: visible !important;
+    height: auto !important;
+    
+    /* Sahi multi-page break handler layer */
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .rx-record-header {
+    margin-bottom: 6px !important;
+  }
+
+  /* Convert graphics indexes to neat outline headers */
+  .rx-record-index {
+    background: transparent !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    font-size: 11pt !important;
+    font-weight: bold !important;
+    text-decoration: underline !important;
+  }
+  .rx-record-index::after {
+    content: ":" !important;
+  }
+
+  .rx-record-timestamps {
+    font-size: 10pt !important;
+    color: #555555 !important;
+  }
+
+  /* Structured Metadata Parameters Mapping */
+  .rx-record-meta-tags {
+    display: block !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 8px !important;
+  }
+
+  .rx-meta-tag {
+    display: block !important;
+    margin-bottom: 4px !important;
+    padding-left: 15px !important; /* Systematic block indentation */
+  }
+
+  .rx-meta-label {
+    display: inline !important;
+    font-size: 11pt !important;
+    font-weight: bold !important;
+    color: #000000 !important;
+    text-transform: capitalize !important;
+  }
+  .rx-meta-label::after {
+    content: " — " !important;
+  }
+
+  .rx-meta-tag span:not(.rx-meta-label) {
+    display: inline !important;
+    font-size: 11pt !important;
+    color: #111111 !important;
+  }
+
+  /* Preformatted Text Block Alignment */
+  .rx-medicines-block {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .rx-medicines-label {
+    font-size: 11pt !important;
+    font-weight: bold !important;
+    color: #000000 !important;
+    background: transparent !important;
+    padding: 0 0 0 15px !important;
+    text-transform: none !important;
+  }
+  .rx-medicines-label::after {
+    content: ":" !important;
+  }
+
+  .rx-medicines-text {
+    padding: 4px 0 0 30px !important; /* Deep text block indentation rules */
+    font-family: "Times New Roman", Times, serif !important;
+    font-size: 11pt !important;
+    line-height: 1.6 !important;
+    color: #000000 !important;
+    overflow: visible !important;
+  }
+
+  /* 8. Clinical Treatment Logs Timelines Alignment */
+  .rx-timeline {
+    padding-left: 0 !important;
+    overflow: visible !important;
+    height: auto !important;
+    display: block !important;
+  }
+  .rx-timeline::before,
+  .rx-timeline-dot {
+    display: none !important; /* Hides system circles and graphical connectors */
+  }
+
+  .rx-timeline-item {
+    margin-bottom: 25px !important;
+    overflow: visible !important;
+    height: auto !important;
+    display: block !important;
+    
+    /* Ensure rows break naturally to sheet 2, 3 safely */
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .rx-timeline-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .rx-procedure-badge {
+    background: transparent !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    font-weight: bold !important;
+    font-size: 11pt !important;
+    border: none !important;
+    text-decoration: underline !important;
+  }
+  .rx-procedure-badge::after {
+    content: ":" !important;
+  }
+
+  .rx-handled-by {
+    font-size: 10pt !important;
+    color: #444444 !important;
+    padding-left: 15px !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* General empty/fallback configurations descriptor override */
+  .rx-empty,
+  .rx-empty-state {
+    border: none !important;
+    background: transparent !important;
+    color: #000000 !important;
+    font-style: italic !important;
+    padding: 15px 0 !important;
+    text-align: left !important;
+  }
+}
+

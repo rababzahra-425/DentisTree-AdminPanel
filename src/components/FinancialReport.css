@@ -1,0 +1,554 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   FINANCIAL REPORT — MASTER CONTAINER BASE STYLES
+═══════════════════════════════════════════════════════════════════════════ */
+.fr-container {
+  padding: 28px 32px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #eef7ff; /* Exact light mode blue soft background tint */
+  min-height: 100vh;
+  font-size: 13px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] .fr-container {
+  background: var(--bg, #0f172a) !important;
+  color: var(--text-h, #f1f5f9) !important;
+}
+
+/* ── Loading & Error States ── */
+.fr-state-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 14px;
+  color: #64748b;
+  font-size: 14px;
+}
+[data-theme="dark"] .fr-state-screen { color: var(--text-m, #64748b); }
+
+.fr-spinner {
+  width: 44px; height: 44px;
+  border: 4px solid #dbeafe;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: fr-spin 0.8s linear infinite;
+}
+@keyframes fr-spin { to { transform: rotate(360deg); } }
+
+.fr-error-screen { color: #ef4444; }
+.fr-error-icon {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: #fee2e2;
+  color: #ef4444;
+  font-size: 24px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADER & PERIOD NAVIGATION STYLES
+═══════════════════════════════════════════════════════════════════════════ */
+.fr-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.fr-header-left h2 { font-size: 22px; font-weight: 700; color: #0f172a; margin: 0 0 4px; }
+[data-theme="dark"] .fr-header-left h2 { color: var(--text-h, #f1f5f9); }
+
+.fr-subtitle { font-size: 13px; color: #94a3b8; margin: 0; }
+[data-theme="dark"] .fr-subtitle { color: var(--text-m, #64748b); }
+
+.fr-header-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+/* Month Navigator Components */
+.fr-month-nav {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+[data-theme="dark"] .fr-month-nav {
+  background: var(--surface, #1e293b) !important;
+  border-color: var(--border, #334155) !important;
+}
+
+.fr-nav-btn {
+  background: none; border: none; padding: 8px 14px; font-size: 16px; cursor: pointer; color: #2563eb; font-weight: 700; transition: background 0.15s;
+}
+[data-theme="dark"] .fr-nav-btn { color: var(--acc, #3b82f6); }
+.fr-nav-btn:hover:not(:disabled) { background: #eff6ff; }
+[data-theme="dark"] .fr-nav-btn:hover:not(:disabled) { background: var(--surface2, #253347); }
+.fr-nav-btn:disabled { color: #cbd5e1; cursor: not-allowed; }
+
+.fr-month-label {
+  padding: 8px 14px; font-size: 13px; font-weight: 600; color: #1e293b; border-left: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; white-space: nowrap; min-width: 130px; text-align: center;
+}
+[data-theme="dark"] .fr-month-label {
+  color: var(--text-h, #f1f5f9);
+  border-color: var(--border, #334155);
+}
+
+.fr-btn { padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: all 0.15s; font-family: inherit; }
+.fr-btn-primary { background: #2563eb; color: #fff; }
+.fr-btn-ghost { background: #fff; color: #475569; border: 1px solid #e2e8f0; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+[data-theme="dark"] .fr-btn-ghost {
+  background: var(--surface, #1e293b);
+  border-color: var(--border, #334155);
+  color: var(--text-b, #94a3b8);
+}
+[data-theme="dark"] .fr-btn-ghost:hover { background: var(--surface2, #253347); color: var(--text-h); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   KPI CARD SYSTEM DISPLAY METRICS
+═══════════════════════════════════════════════════════════════════════════ */
+.fr-kpi-grid { display: grid; grid-template-columns: var(--fr-kpi-cols, repeat(4, 1fr)); gap: 16px; margin-bottom: 22px; }
+.fr-kpi {
+  background: #ffffff; border-radius: 16px; padding: 20px; display: flex; align-items: center; gap: 16px; box-shadow: 0 2px 12px rgba(15,23,42,0.06); border-left: 5px solid transparent; transition: transform 0.2s, box-shadow 0.2s;
+}
+.fr-kpi:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(15,23,42,0.10); }
+
+[data-theme="dark"] .fr-kpi {
+  background: var(--surface, #1e293b) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.fr-kpi-income  { border-left-color: #10b981; }
+.fr-kpi-expense { border-left-color: #f43f5e; }
+.fr-kpi-profit  { border-left-color: #3b82f6; }
+.fr-kpi-loss    { border-left-color: #f43f5e; }
+.fr-kpi-best    { border-left-color: #f59e0b; }
+
+.fr-kpi-icon {
+  width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 900; flex-shrink: 0;
+}
+.fr-kpi-income  .fr-kpi-icon { background: #d1fae5; color: #059669; }
+.fr-kpi-expense .fr-kpi-icon { background: #ffe4e6; color: #e11d48; }
+.fr-kpi-profit  .fr-kpi-icon { background: #dbeafe; color: #2563eb; }
+.fr-kpi-loss    .fr-kpi-icon { background: #ffe4e6; color: #e11d48; }
+.fr-kpi-best    .fr-kpi-icon { background: #fef3c7; color: #d97706; }
+
+[data-theme="dark"] .fr-kpi-income .fr-kpi-icon  { background: #042f1a; color: #34d399; }
+[data-theme="dark"] .fr-kpi-expense .fr-kpi-icon { background: #4c0519; color: #fb7185; }
+[data-theme="dark"] .fr-kpi-profit .fr-kpi-icon  { background: #1e3a8a; color: #60a5fa; }
+[data-theme="dark"] .fr-kpi-best .fr-kpi-icon    { background: #451a03; color: #fbbf24; }
+
+.fr-kpi-body { display: flex; flex-direction: column; gap: 2px; text-align: left; }
+.fr-kpi-label { font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+.fr-kpi-value { font-size: 20px; font-weight: 800; color: #0f172a; letter-spacing: -0.3px; }
+
+[data-theme="dark"] .fr-kpi-value:not(.fr-kpi-income *):not(.fr-kpi-expense *):not(.fr-kpi-profit *) {
+  color: var(--text-h, #f1f5f9);
+}
+.fr-kpi-income .fr-kpi-value   { color: #059669; }
+[data-theme="dark"] .fr-kpi-income .fr-kpi-value { color: #34d399; }
+.fr-kpi-expense .fr-kpi-value  { color: #e11d48; }
+[data-theme="dark"] .fr-kpi-expense .fr-kpi-value { color: #fb7185; }
+.fr-kpi-profit .fr-kpi-value   { color: #2563eb; }
+[data-theme="dark"] .fr-kpi-profit .fr-kpi-value { color: #60a5fa; }
+.fr-kpi-sub { font-size: 11px; color: #94a3b8; }
+
+/* ── Tabs Controls ── */
+.fr-tabs { display: flex; gap: 4px; background: #ffffff; padding: 6px; border-radius: 12px; margin-bottom: 18px; box-shadow: 0 1px 6px rgba(15,23,42,0.05); width: fit-content; border: 1px solid #e2e8f0; }
+[data-theme="dark"] .fr-tabs {
+  background: var(--surface, #1e293b);
+  border-color: var(--border, #334155);
+}
+
+.fr-tab { padding: 7px 18px; border-radius: 8px; border: none; background: none; font-size: 13px; font-weight: 600; cursor: pointer; color: #64748b; display: flex; align-items: center; gap: 6px; }
+.fr-tab:hover { background: #f8fafc; color: #1e293b; }
+[data-theme="dark"] .fr-tab:hover { background: var(--surface2, #253347); color: var(--text-h); }
+.fr-tab-active { background: #2563eb; color: #ffffff; }
+[data-theme="dark"] .fr-tab-active { background: var(--acc, #3b82f6); color: #fff; }
+
+.fr-tab-badge { background: #2563eb; color: #ffffff; border-radius: 20px; font-size: 10px; font-weight: 800; padding: 1px 6px; }
+.fr-tab-active .fr-tab-badge { background: rgba(255,255,255,0.25); color: #fff; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GRAPH VISUALIZATIONS MODULAR PIPES
+═══════════════════════════════════════════════════════════════════════════ */
+.fr-chart-card {
+  background: #ffffff; border-radius: 16px; padding: 24px; margin-bottom: 18px; box-shadow: 0 2px 12px rgba(15,23,42,0.06); border: 1px solid #f1f5f9;
+}
+[data-theme="dark"] .fr-chart-card {
+  background: var(--surface, #1e293b) !important;
+  border-color: var(--border, #334155) !important;
+}
+
+.fr-chart-header { margin-bottom: 18px; text-align: left; }
+.fr-chart-header h3 { font-size: 15px; font-weight: 700; color: #0f172a; margin: 0 0 3px; }
+[data-theme="dark"] .fr-chart-header h3 { color: var(--text-h, #f1f5f9); }
+.fr-chart-sub { font-size: 12px; color: #94a3b8; }
+
+.fr-charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+
+/* Donut & Legends structure */
+.fr-donut-wrap { display: flex; align-items: center; gap: 16px; }
+.fr-donut-legend { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.fr-legend-row { display: flex; align-items: center; gap: 8px; }
+.fr-legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.fr-legend-name { font-size: 12px; color: #475569; flex: 1; text-align: left; }
+[data-theme="dark"] .fr-legend-name { color: var(--text-b, #94a3b8); }
+.fr-legend-val { font-size: 12px; font-weight: 700; color: #0f172a; }
+[data-theme="dark"] .fr-legend-val { color: var(--text-h); }
+
+.fr-no-data { text-align: center; color: #cbd5e1; padding: 50px 0; font-size: 14px; }
+
+/* Payment Methods Performance Bar */
+.fr-method-list { display: flex; flex-direction: column; gap: 14px; padding-top: 4px; }
+.fr-method-row { display: flex; align-items: center; gap: 12px; }
+.fr-method-left { display: flex; align-items: center; gap: 8px; min-width: 80px; }
+.fr-method-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.fr-method-name { font-size: 13px; font-weight: 600; color: #334155; }
+[data-theme="dark"] .fr-method-name { color: var(--text-h); }
+.fr-method-right { display: flex; align-items: center; gap: 10px; flex: 1; }
+.fr-method-bar-wrap { flex: 1; height: 8px; background: #f1f5f9; border-radius: 20px; overflow: hidden; }
+[data-theme="dark"] .fr-method-bar-wrap { background: var(--border, #334155); }
+.fr-method-bar { height: 100%; border-radius: 20px; transition: width 0.4s ease; }
+.fr-method-val { font-size: 12px; font-weight: 700; color: #0f172a; white-space: nowrap; }
+[data-theme="dark"] .fr-method-val { color: var(--text-h); }
+
+/* Expense Pill Rows (Manual Tabs Sub-elements) */
+.fr-exp-summary-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 22px; }
+.fr-exp-pill { border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; text-align: left; }
+.fr-exp-pill-salary   { background: #dbeafe; }
+.fr-exp-pill-inv      { background: #fef3c7; }
+.fr-exp-pill-other    { background: #f3e8ff; }
+
+[data-theme="dark"] .fr-exp-pill-salary { background: #1e3a8a !important; }
+[data-theme="dark"] .fr-exp-pill-inv    { background: #451a03 !important; }
+[data-theme="dark"] .fr-exp-pill-other  { background: #3b0764 !important; }
+
+.fr-exp-pill-label { font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.4px; }
+[data-theme="dark"] .fr-exp-pill-label { color: var(--text-m, #64748b); }
+.fr-exp-pill-val   { font-size: 20px; font-weight: 800; color: #0f172a; }
+
+.fr-exp-pill-salary .fr-exp-pill-val { color: #1d4ed8; }
+[data-theme="dark"] .fr-exp-pill-salary .fr-exp-pill-val { color: #60a5fa; }
+.fr-exp-pill-inv    .fr-exp-pill-val { color: #d97706; }
+[data-theme="dark"] .fr-exp-pill-inv .fr-exp-pill-val { color: #fbbf24; }
+.fr-exp-pill-other  .fr-exp-pill-val { color: #7c3aed; }
+[data-theme="dark"] .fr-exp-pill-other .fr-exp-pill-val { color: #c084fc; }
+
+/* Salary Dashboard Modular Row */
+.fr-salary-kpi-row { display: flex; gap: 16px; margin-bottom: 20px; }
+.fr-salary-kpi { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 20px; display: flex; flex-direction: column; gap: 4px; flex: 1; text-align: left; }
+[data-theme="dark"] .fr-salary-kpi { background: var(--surface2, #253347); border-color: var(--border, #334155); }
+.fr-salary-kpi span { font-size: 12px; color: #94a3b8; font-weight: 600; }
+.fr-salary-kpi strong { font-size: 20px; font-weight: 800; color: #0f172a; }
+[data-theme="dark"] .fr-salary-kpi strong { color: var(--text-h); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   UNIFIED PATIENT FLOATING MATRIX TABLES STYLES (MATCHES GALLERY SYSTEM)
+═══════════════════════════════════════════════════════════════════════════ */
+.fr-table-container {
+  background: rgb(250, 250, 250); border-radius: 16px; border: 1px solid #e8ecf4; overflow: hidden; box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05); padding: 18px;
+}
+[data-theme="dark"] .fr-table-container {
+  background: var(--surface, #1e293b) !important;
+  border-color: var(--border, #334155) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.fr-table-grid-header {
+  display: grid; align-items: center; padding: 10px 25px; background-color: #dce6f0; border-bottom: 1px solid #e8ecf4; font-size: 12px; font-weight: 700; color: #0f172a; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 10px; text-align: left;
+}
+[data-theme="dark"] .fr-table-grid-header {
+  background-color:#263f63 !important;
+  color: var(--text-h) !important;
+  border-color: var(--border, #334155) !important;
+}
+
+.fr-cards-list { padding: 0; margin: 0; }
+
+.fr-row-card {
+  display: grid; align-items: center; background-color: white; border: 2px solid white; border-radius: 15px; border-bottom: 1px solid #f1f5f9; margin-bottom: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); transition: transform 0.2s ease, box-shadow 0.2s ease; padding: 12px 25px; text-align: left;
+}
+[data-theme="dark"] .fr-row-card {
+  background-color: var(--surface2, #253347) !important;
+  border-color: var(--surface2, #253347) !important;
+}
+.fr-row-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.06); background: #f8fbff; }
+[data-theme="dark"] .fr-row-card:hover { background-color: var(--input-bg-focus, #2d3f55) !important; }
+
+/* Proportions columns layouts logic */
+.fr-grid-overview  { grid-template-columns: 80px 1.2fr 1fr 1fr 1.2fr 100px; gap: 15px; }
+.fr-grid-expenses  { grid-template-columns: 60px 1.5fr 1.2fr 1.2fr 1.5fr; gap: 15px; }
+.fr-grid-salary    { grid-template-columns: 60px 1.5fr 1.5fr 1.2fr 120px; gap: 15px; }
+.fr-grid-inventory { grid-template-columns: 60px 1.5fr 1.2fr 1fr 1fr 120px; gap: 15px; }
+
+.fr-serial { color: #94a3b8; font-size: 12px; font-weight: 600; }
+.fr-month-cell { font-size: 14px; font-weight: 600; color: #0f172a; }
+[data-theme="dark"] .fr-month-cell { color: var(--text-h, #f1f5f9); }
+
+.fr-income-cell  { color: #059669; font-weight: 700; }
+[data-theme="dark"] .fr-income-cell { color: #34d399; }
+.fr-expense-cell { color: #e11d48; font-weight: 700; }
+[data-theme="dark"] .fr-expense-cell { color: #fb7185; }
+.fr-profit-cell  { color: #2563eb; font-weight: 800; }
+[data-theme="dark"] .fr-profit-cell { color: #60a5fa; }
+.fr-loss-cell    { color: #e11d48; font-weight: 800; }
+[data-theme="dark"] .fr-loss-cell { color: #fb7185; }
+
+/* Status Badges colors definition */
+.fr-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+.fr-badge-profit  { background: #d1fae5; color: #065f46; }
+.fr-badge-loss    { background: #fee2e2; color: #991b1b; }
+.fr-badge-neutral { background: #f1f5f9; color: #475569; }
+[data-theme="dark"] .fr-badge-neutral { background: var(--surface, #1e293b); color: var(--text-h); }
+
+/* Recharts Internal Custom Tooltips */
+.fr-tooltip { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 14px; box-shadow: 0 6px 20px rgba(15,23,42,0.12); }
+[data-theme="dark"] .fr-tooltip { background: var(--surface, #1e293b); border-color: var(--border, #334155); }
+.fr-tooltip-label { font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px; }
+[data-theme="dark"] .fr-tooltip-label { color: var(--text-h); }
+.fr-tooltip-row   { font-size: 12px; margin: 2px 0; font-weight: 600; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PREMIUM FINANCIAL REPORT FORMAL PRINT PACK CONSTRAINTS
+═══════════════════════════════════════════════════════════════════════════ */
+.print-only { display: none; }
+
+@media print {
+  /* 1. Base clean sheet document configuration overrides */
+  body, .fr-container {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 11pt !important;
+  }
+
+  /* 2. Strip interactive operational headers or control components */
+  .no-print, .fr-tabs, .fr-header, .fr-month-nav {
+    display: none !important;
+  }
+
+  /* 3. Output official formal diagnostic report layout */
+  .print-only {
+    display: block !important;
+  }
+  
+  .fr-container::before {
+    content: "DENTISTREE CLINICAL MANAGEMENT AUDIT";
+    display: block;
+    text-align: center;
+    font-size: 20pt;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+    color: #000;
+  }
+  
+  .fr-container::after {
+    content: "System Statement Ledger Balance Sheet - Confidential Internal Use Only";
+    display: block;
+    text-align: center;
+    font-size: 9pt;
+    color: #555;
+    margin-top: 30px;
+    border-top: 1px solid #000;
+    padding-top: 8px;
+  }
+
+  /* 4. Formatting metrics grids to prevent single card page cut breakage */
+  .fr-kpi-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 12px !important;
+    margin-bottom: 25px !important;
+  }
+  .fr-kpi {
+    background: #ffffff !important;
+    border: 1px solid #000000 !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+    padding: 10px !important;
+  }
+  .fr-kpi-value { font-size: 14pt !important; color: #000000 !important; }
+
+  /* 5. Force continuous view stacking logic for paper statements output */
+  .fr-chart-card {
+    display: block !important;
+    page-break-inside: avoid;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 30px !important;
+  }
+
+  /* Force chart headers to form neat typewriter subtitles */
+  .fr-chart-header h3 {
+    font-size: 12pt !important;
+    border-bottom: 1.5px solid #000000 !important;
+    padding-bottom: 4px !important;
+    text-transform: uppercase !important;
+    color: #000000 !important;
+  }
+
+  /* 6. Convert Recharts graph grids into structured reference alternate labels for black ink print copies */
+  .fr-charts-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+  
+  /* Suppress graphic canvas engines when rendering paper outputs */
+  .recharts-responsive-container {
+    display: none !important;
+  }
+  
+  .fr-donut-wrap { padding: 10px 0; }
+  .fr-legend-row { padding: 4px 0; border-bottom: 1px dashed #ccc; }
+
+  /* 7. Convert Floating Cards lists components back into standard rigid accounting tables matrix */
+  .fr-table-container {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .fr-table-grid-header {
+    display: table-row !important;
+    background-color: #e5e5e5 !important;
+    font-weight: bold !important;
+    color: #000000 !important;
+  }
+  .fr-table-grid-header span {
+    display: table-cell !important;
+    padding: 8px 12px !important;
+    border: 1px solid #000000 !important;
+    font-size: 10pt !important;
+  }
+
+  .fr-cards-list {
+    display: table-row-group !important;
+  }
+
+  .fr-row-card {
+    display: table-row !important;
+    background-color: #ffffff !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  .fr-row-card > div {
+    display: table-cell !important;
+    padding: 8px 12px !important;
+    border: 1px solid #000000 !important;
+    font-size: 10pt !important;
+    color: #000000 !important;
+    background: none !important;
+  }
+  
+  .fr-row-card > div:last-child {
+    text-align: left !important;
+  }
+
+  /* Remove bad badges decorations */
+  .fr-badge {
+    background: transparent !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    font-weight: bold !important;
+  }
+}
+[data-theme="dark"]  .fr-btn-ghost{
+    background: #2856a1 !important;
+    color: #fff !important;
+}
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS — FINANCIAL REPORT
+══════════════════════════════════════════════════════ */
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .fr-kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 992px) {
+  .fr-container { padding: 18px; }
+  .fr-charts-row { grid-template-columns: 1fr; }
+  .fr-kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .fr-exp-summary-row { grid-template-columns: 1fr 1fr; }
+
+  /* Grid table columns compress */
+  .fr-grid-overview  { grid-template-columns: 60px 1fr 1fr 1fr 1fr 90px; gap: 10px; }
+  .fr-grid-expenses  { grid-template-columns: 50px 1.2fr 1fr 1fr 1fr; gap: 10px; }
+  .fr-grid-salary    { grid-template-columns: 50px 1.2fr 1.2fr 1fr 100px; gap: 10px; }
+  .fr-grid-inventory { grid-template-columns: 50px 1.2fr 1fr 0.8fr 0.8fr 100px; gap: 10px; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .fr-container { padding: 14px 12px; }
+
+  .fr-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .fr-header-right { width: 100%; flex-wrap: wrap; gap: 8px; }
+  .fr-month-nav { flex: 1; }
+  .fr-btn { flex: 1; text-align: center; }
+
+  .fr-kpi-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .fr-kpi { padding: 14px; gap: 10px; }
+  .fr-kpi-icon { width: 36px; height: 36px; font-size: 15px; }
+  .fr-kpi-value { font-size: 16px; }
+
+  /* Tabs scroll */
+  .fr-tabs { overflow-x: auto; flex-wrap: nowrap; width: 100%; }
+  .fr-tab { white-space: nowrap; flex-shrink: 0; padding: 6px 12px; }
+
+  .fr-exp-summary-row { grid-template-columns: 1fr; }
+  .fr-salary-kpi-row { flex-direction: column; gap: 10px; }
+
+  /* Donut chart stacks */
+  .fr-donut-wrap { flex-direction: column; align-items: flex-start; }
+
+  /* Grid tables: hide header, stack rows */
+  .fr-table-grid-header { display: none; }
+
+  .fr-grid-overview,
+  .fr-grid-expenses,
+  .fr-grid-salary,
+  .fr-grid-inventory {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .fr-row-card { padding: 12px 14px; border-radius: 12px; }
+  .fr-serial { font-size: 11px; }
+
+  /* Table containers allow horizontal scroll as fallback */
+  .fr-table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
+
+/* Phone */
+@media (max-width: 480px) {
+  .fr-container { padding: 10px 8px; }
+  .fr-kpi-grid { grid-template-columns: 1fr; }
+  .fr-kpi { border-left-width: 4px; }
+
+  .fr-grid-overview,
+  .fr-grid-expenses,
+  .fr-grid-salary,
+  .fr-grid-inventory {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .fr-row-card { padding: 10px 12px; margin-bottom: 8px; }
+  .fr-chart-card { padding: 16px; }
+  .fr-exp-pill { padding: 12px 14px; }
+  .fr-exp-pill-val { font-size: 16px; }
+}

@@ -1,0 +1,919 @@
+/* ══════════════════════════════════════════════
+   ORIGINAL LIGHT MODE STYLES (UNTOUCHED)
+   ══════════════════════════════════════════════ */
+ 
+/* ── Container ── */
+.emp-container {
+  padding: 40px;
+  background-color: #eef7ff;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+ 
+/* ── Header ── */
+.emp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+ 
+.emp-main-title {
+  font-family: 'Inter', 'Arial';
+  color: #1b2559;
+  font-weight: bold;
+  margin: 0;
+}
+ 
+.emp-add-btn {
+  /* background: #e5e5e56b;
+  color: black;
+  border: 1px solid rgb(155, 154, 154);
+  padding: 12px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background 0.2s; */
+      background: #2563eb;
+    border: none;
+    color: white;
+    padding: 9px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+ 
+.emp-add-btn:hover {
+  background-color: rgb(155, 154, 154);
+}
+ 
+/* ── Stats ── */
+.emp-stats {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+ 
+.emp-stat-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  min-width: 110px;
+}
+ 
+.emp-stat-num {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1b2559;
+  line-height: 1;
+}
+ 
+.emp-stat-num.active-num  { color: #01b574; }
+.emp-stat-num.inactive-num { color: #ee5d50; }
+ 
+.emp-stat-label {
+  font-size: 12px;
+  color: #a3afd1;
+  margin-top: 5px;
+  font-weight: 600;
+}
+ 
+/* ── Toolbar ── */
+.emp-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+ 
+.emp-search {
+  flex: 1;
+  min-width: 220px;
+  padding: 11px 16px;
+  border-radius: 12px;
+  border: 1px solid #dde3f0;
+  font-size: 13px;
+  background: #fff;
+  color: #333;
+  transition: border 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+ 
+.emp-search:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+ 
+.emp-status-filters {
+  display: flex;
+  gap: 8px;
+}
+ 
+.emp-filter-btn {
+  padding: 9px 18px;
+  border-radius: 20px;
+  border: 1px solid #dde3f0;
+  background: #fff;
+  color: #707eae;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+ 
+.emp-filter-btn:hover  { border-color: #2563eb; color: #2563eb; }
+.emp-filter-btn.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+ 
+/* ── Loading / Empty ── */
+.emp-loading,
+.emp-empty {
+  text-align: center;
+  color: #a3afd1;
+  padding: 60px 20px;
+  font-size: 15px;
+}
+ 
+/* ── Table Container (card-list wrapper) ── */
+.emp-tablecontainer {
+  padding: 35px 25px;
+  border-radius: 20px;
+  background-color: rgb(250, 250, 250);
+}
+ 
+/* ── Column Header Grid ── */
+.emp-table-header-grid {
+  margin-bottom: 10px;
+  background-color: #dce6f0;
+  display: grid;
+  grid-template-columns: 2fr 1.4fr 1.6fr 1fr 1.4fr;
+  padding: 10px 25px;
+  color: #000;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+ 
+.emp-table-header-grid .text-right {
+  text-align: right;
+}
+ 
+/* ── Card Row ── */
+.emp-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+ 
+.emp-card-row {
+  display: grid;
+  grid-template-columns: 2fr 1.4fr 1.6fr 1fr 1.4fr;
+  background: white;
+  padding: 8px 25px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  transition: 0.3s ease;
+}
+ 
+.emp-card-row:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+ 
+/* ── Employee Column ── */
+.emp-col-employee {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+ 
+.emp-avatar-box {
+  width: 45px;
+  height: 45px;
+  background: #e0e7ff;
+  color: #2563eb;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+ 
+.emp-name {
+  font-weight: bold;
+  color: #1b2559;
+  font-size: 15px;
+}
+ 
+.emp-sub {
+  font-size: 13px;
+  color: #a3afd1;
+}
+
+.emp-id-badgee{
+      display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: gray;
+    font-size: 13px;
+    font-weight: 700;
+}
+ 
+/* ── Designation Column ── */
+.emp-col-designation {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+ 
+.emp-desig-chip {
+  background: #f4f7fe;
+  color: #2563eb;
+  padding: 5px 13px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-block;
+  width: fit-content;
+}
+ 
+.emp-dept-text {
+  font-size: 12px;
+  color: #a3afd1;
+  font-weight: 600;
+  padding-left: 2px;
+}
+ 
+/* ── Contact Column ── */
+.emp-col-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+ 
+.emp-contact-line {
+  font-size: 13px;
+  color: #4a5568;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+ 
+.emp-contact-line i {
+  color: #a3afd1;
+  font-size: 12px;
+}
+ 
+.emp-email-line {
+  color: #2563eb;
+  font-size: 12px;
+}
+ 
+.emp-na {
+  color: #a3afd1;
+  font-size: 14px;
+}
+ 
+/* ── Status Column ── */
+.emp-col-status {
+  display: flex;
+  align-items: center;
+}
+ 
+.emp-status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+ 
+.emp-status-badge.active   { background: #eafaf1; color: #01b574; }
+.emp-status-badge.inactive { background: #fdedec; color: #ee5d50; }
+ 
+/* ── Actions Column ── */
+.emp-col-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+ 
+/* ── Icon Buttons ── */
+/* .btn-icon-round {
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: #f4f7fe;
+  color: #707eae;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  transition: 0.2s;
+} */
+
+.btn-icon-btn.view  {     background: #eff6ff; color: #2563EB; }
+.btn-icon-btn.view  { background: #f0fdf4; color: #16a34a;  }
+.btn-icon-btn.delete   {  background: #fef2f2; color: #dc2626;  }
+ 
+.btn-icon-round:hover        { background: #2563eb; color: white; }
+.btn-icon-round.delete:hover { background: #fee2e2; }
+.btn-icon-round.view:hover   { background: #dbeafe; }
+.btn-icon-round.edit:hover   { background: #dcfce7; }
+ 
+/* ── VIEW DETAIL MODAL ── */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(27, 37, 89, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+ 
+.emp-view-modal {
+  background: white;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+  max-height: 90vh;
+  overflow-y: hidden;
+}
+ 
+.emp-view-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  position: relative;
+}
+ 
+.emp-view-avatar {
+  width: 56px;
+  height: 56px;
+  background: #e0e7ff;
+  color: #2563eb;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+ 
+.emp-view-title-block {
+  flex: 1;
+}
+ 
+.emp-view-name {
+  color: #1b2559;
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0 0 4px 0;
+}
+ 
+.emp-view-desig {
+  font-size: 13px;
+  color: #a3afd1;
+  font-weight: 600;
+}
+ 
+.close-x {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: none;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: #a3afd1;
+  line-height: 1;
+  transition: color 0.2s;
+}
+ 
+.close-x:hover { color: #ee5d50; }
+ 
+/* Detail Grid */
+.emp-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+ 
+.emp-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #f8faff;
+  border-radius: 12px;
+  padding: 12px 15px;
+}
+ 
+.emp-detail-full {
+  grid-column: 1 / -1;
+}
+ 
+.emp-detail-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #a3afd1;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+ 
+.emp-detail-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1b2559;
+}
+ 
+.emp-mono      { font-family: monospace; font-size: 13px; }
+.emp-email-text { color: #2563eb; }
+.emp-salary-text { color: #01b574; }
+ 
+/* View Modal Footer */
+.emp-view-footer {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+ 
+.emp-view-edit-btn {
+  flex: 1;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+ 
+.emp-view-edit-btn:hover { background: #1d4ed8; }
+ 
+/* ── Add / Edit Modal ── */
+.emp-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(27, 37, 89, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}
+ 
+.emp-modal {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 28px;
+  width: 620px;
+  max-width: 95vw;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+ 
+.emp-modal h3 {
+  font-size: 17px;
+  color: #1b2559;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+ 
+.emp-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+ 
+.emp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+ 
+.emp-field-full {
+  grid-column: 1 / -1;
+}
+ 
+.emp-field label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #a3afd1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+ 
+.emp-field input,
+.emp-field select {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #e0e7ff;
+  font-size: 13px;
+  background: #fafafa;
+  color: #333;
+  transition: border 0.2s;
+  box-sizing: border-box;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+}
+ 
+.emp-field input:focus,
+.emp-field select:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #fff;
+}
+ 
+.emp-modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+ 
+.emp-save-btn {
+  flex: 1;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+ 
+.emp-save-btn:hover:not(:disabled) { background: #1d4ed8; }
+.emp-save-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+ 
+.emp-cancel-btn {
+  flex: 1;
+  background: #f4f7fe;
+  color: #707eae;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+ 
+.emp-cancel-btn:hover { background: #e0e7ff; }
+ 
+/* ── Confirm Modal ── */
+.emp-confirm-modal {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 28px;
+  width: 340px;
+  max-width: 92vw;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  text-align: center;
+}
+ 
+.emp-confirm-modal h3 {
+  font-size: 17px;
+  color: #1b2559;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+ 
+.emp-confirm-modal p {
+  font-size: 13px;
+  color: #a3afd1;
+  margin-bottom: 22px;
+}
+ 
+.emp-confirm-actions {
+  display: flex;
+  gap: 10px;
+}
+ 
+.emp-delete-confirm-btn {
+  flex: 1;
+  background: #ee5d50;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+ 
+.emp-delete-confirm-btn:hover { background: #c0392b; }
+ 
+/* ── Media Queries Responsiveness ── */
+@media (max-width: 1100px) {
+  .emp-table-header-grid,
+  .emp-card-row {
+    grid-template-columns: 1.8fr 1.3fr 1.4fr 1fr 1.2fr;
+    padding: 6px 16px;
+  }
+}
+ 
+@media (max-width: 900px) {
+  .emp-table-header-grid { display: none; }
+  .emp-container { padding: 20px; }
+  .emp-header { flex-direction: column; gap: 14px; align-items: flex-start; }
+  .emp-tablecontainer { padding: 20px 14px; }
+  .emp-card-row { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 18px; position: relative; }
+  .emp-col-employee { width: 100%; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; }
+  .emp-col-designation::before { content: "Role: "; font-weight: 700; color: #a3afd1; font-size: 11px; }
+  .emp-col-contact::before     { content: "Contact: "; font-weight: 700; color: #a3afd1; font-size: 11px; }
+  .emp-col-status::before      { content: "Status: "; font-weight: 700; color: #a3afd1; font-size: 11px; }
+  .emp-col-designation, .emp-col-contact, .emp-col-status { width: 100%; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .emp-col-actions { width: 100%; justify-content: flex-start; border-top: 1px solid #f1f5f9; padding-top: 12px; margin-top: 4px; }
+  .btn-icon-round { width: 44px; height: 44px; }
+}
+ 
+@media (max-width: 600px) {
+  .emp-stats { gap: 10px; }
+  .emp-stat-card { flex: 1; min-width: 80px; padding: 12px 10px; }
+  .emp-stat-num { font-size: 22px; }
+  .emp-toolbar { flex-direction: column; align-items: stretch; }
+  .emp-status-filters { justify-content: flex-start; }
+  .emp-detail-grid { grid-template-columns: 1fr; }
+  .emp-detail-full { grid-column: 1; }
+  .emp-form-grid { grid-template-columns: 1fr; }
+  .emp-field-full { grid-column: 1; }
+  .emp-name, .emp-sub { font-size: 10px; }
+  .emp-view-modal, .emp-modal { padding: 20px 16px; }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   DARK MODE OVERRIDES (SAFE & INDEPENDENT)
+   Only triggers when [data-theme="dark"] is active
+══════════════════════════════════════════════════════ */
+
+[data-theme="dark"] .emp-container {
+  background-color: #0f172a; /* Smooth dark canvas background */
+}
+[data-theme="dark"] .db-topbar, [data-theme="dark"] [class*="-topbar"], [data-theme="dark"] [class*="-header"]:not(.login-header) {
+  background-color: #0f172a; /* Smooth dark canvas background */
+}
+[data-theme="dark"] .emp-header{
+    background-color: #0f172a; /* Smooth dark canvas background */
+
+
+}
+
+[data-theme="dark"] .emp-main-title {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .emp-add-btn {
+    background: #2856a1 !important;
+    color: #fff !important;
+}
+
+/* Stat Counters Adaption */
+[data-theme="dark"] .emp-stat-card {
+  background: #1e293b;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .emp-stat-num {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .emp-stat-label {
+  color: #64748b;
+}
+
+/* Toolbar Control Panel */
+[data-theme="dark"] .emp-search {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .emp-filter-btn {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .emp-filter-btn:hover {
+  border-color: #3b82f6;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .emp-filter-btn.active {
+  background-color: #3b82f6;
+  color: #0f172a;
+  border-color: #334155;
+}
+
+/* Grid Table Wrapping Structure */
+[data-theme="dark"] .emp-tablecontainer {
+  background-color: #1e293b;
+}
+
+[data-theme="dark"] .emp-table-header-grid {
+  background-color: #263f63 !important;
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .emp-card-row {
+  background-color: #1e293b;
+  border: 2px solid #303d52;
+}
+
+[data-theme="dark"] .emp-card-row:hover {
+  background-color: #253347;
+}
+
+/* Rows Components Sync */
+[data-theme="dark"] .emp-avatar-box {
+  background: #1e3a5f;
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .emp-name {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .emp-sub,
+[data-theme="dark"] .emp-id-badgee {
+  color: #64748b;
+}
+
+[data-theme="dark"] .emp-desig-chip {
+  background-color: #253347;
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .emp-contact-line {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .emp-contact-line i {
+  color: #64748b;
+}
+
+/* Action Icon Control Overrides (Borders Removed) */
+[data-theme="dark"] .btn-icon-round {
+  background-color: #253347 !important;
+  color: #94a3b8 !important;
+  border: none !important;
+}
+
+[data-theme="dark"] .btn-icon-round.view:hover {
+  background-color: #3b82f6 !important;
+  color: #fff !important;
+}
+
+[data-theme="dark"] .btn-icon-round.edit:hover {
+  background-color: #16a34a !important;
+  color: #fff !important;
+}
+
+[data-theme="dark"] .btn-icon-round.delete:hover {
+  background-color: #ee5d50 !important;
+  color: white !important;
+}
+
+/* Modals & Dialog Elements Sync */
+[data-theme="dark"] .modal-overlay,
+[data-theme="dark"] .emp-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .emp-view-modal,
+[data-theme="dark"] .emp-modal,
+[data-theme="dark"] .emp-confirm-modal {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .emp-view-name,
+[data-theme="dark"] .emp-modal h3,
+[data-theme="dark"] .emp-confirm-modal h3 {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .emp-detail-item {
+  background-color: #253347;
+}
+
+[data-theme="dark"] .emp-detail-label,
+[data-theme="dark"] .emp-field label,
+[data-theme="dark"] .emp-confirm-modal p {
+  color: #64748b;
+}
+
+[data-theme="dark"] .emp-detail-value {
+  color: #cbd5e1;
+}
+
+/* Form Controls Inside Inputs Box */
+[data-theme="dark"] .emp-field input,
+[data-theme="dark"] .emp-field select {
+  background-color: #253347;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .emp-field input:focus,
+[data-theme="dark"] .emp-field select:focus {
+  background-color: #2d3f55;
+  border-color: #3b82f6;
+}
+
+/* Interaction Footer Custom Control */
+[data-theme="dark"] .emp-cancel-btn {
+  background-color: #253347;
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .emp-cancel-btn:hover {
+  background-color: #334155;
+  color: #f1f5f9;
+}
+
+@media (max-width: 900px) {
+  [data-theme="dark"] .emp-col-employee {
+    border-bottom-color: #334155;
+  }
+  [data-theme="dark"] .emp-col-actions {
+    border-top-color: #334155;
+  }
+}
+
+/* ── Header actions group (Add + Reset buttons) ── */
+.emp-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── Reset All Salaries button ── */
+.emp-reset-btn {
+  background: #fff7ed;
+  color: #c2410c;
+  border: 1.5px solid #fed7aa;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.emp-reset-btn:hover {
+  background: #ffedd5;
+  border-color: #fb923c;
+}
+
+[data-theme="dark"] .emp-reset-btn {
+  background: #431407;
+  color: #fdba74;
+  border-color: #7c2d12;
+}
+
+[data-theme="dark"] .emp-reset-btn:hover {
+  background: #7c2d12;
+  border-color: #ea580c;
+}
