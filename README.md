@@ -1,16 +1,25 @@
-# React + Vite
+# Dentis Tree Dental Clinic - Admin Penel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A comprehensive backend system for managing dental clinic operations, built with Django and Django REST Framework.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Patient Management
+- Appointment Scheduling
+- Dentist Management
+- Gallery Management
+- Inventory Management
+- Employee Management
+- Patient Record Management
+- Expenses Management Report
+- Financial Report Management
+- Payment Management
+- Admin Dashboard APIs
+- RESTful API Architecture
+- Database Integration
+- Secure Environment Configuration
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Purpose
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This backend powers the Dentis Tree Dental Clinic Management System by providing secure APIs and business logic for managing clinic operations.

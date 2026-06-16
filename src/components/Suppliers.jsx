@@ -19,7 +19,7 @@ function Suppliers() {
     try {
       const res = await fetch(`${API}/suppliers/`);
       const data = await res.json();
-      setSuppliers(data);
+      setSuppliers(Array.isArray(data) ? data : []);
     } catch (err) { console.error(err); }
     finally { setLoading(false); }
   };

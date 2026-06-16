@@ -17,8 +17,9 @@ function Reviews() {
     try {
       const res = await fetch(`${API}/reviews/`);
       const data = await res.json();
-      setReviews(data);
-      setFiltered(data);
+      const arr = Array.isArray(data) ? data : [];
+      setReviews(arr);
+      setFiltered(arr);
     } catch (err) {
       console.error("Error fetching reviews:", err);
     } finally {

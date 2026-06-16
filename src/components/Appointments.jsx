@@ -147,7 +147,7 @@ function Appointments({ refreshToken = 0, isVisible = true }) {
 
               <div className="col-status">
                 <div className="d-text">{formatApptDate(item.date)}</div>
-                <div className={`status-badgee ${item.status.toLowerCase()}`}>
+                <div className={`status-badgee ${(item.status || '').toLowerCase()}`}>
                   {item.status}
                 </div>
               </div>
@@ -236,7 +236,7 @@ function Appointments({ refreshToken = 0, isVisible = true }) {
                 <div className="detail-info-card">
                   <div className="ic-icon">✅</div>
                   <div className="ic-label">Current status</div>
-                  <div className={`ic-value ${selectedPatient.status.toLowerCase()}`}>
+                  <div className={`ic-value ${(selectedPatient.status || '').toLowerCase()}`}>
                     {selectedPatient.status}
                   </div>
                 </div>

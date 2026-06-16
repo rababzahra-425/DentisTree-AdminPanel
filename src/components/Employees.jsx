@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import "./Employees.css";
 import { API_BASE } from "../api";
@@ -39,7 +38,7 @@ function Employees() {
     try {
       const res = await fetch(`${API}/employees/`);
       const data = await res.json();
-      setEmployees(data);
+      setEmployees(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error("Error fetching employees:", err);
     } finally {

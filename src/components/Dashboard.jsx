@@ -193,9 +193,9 @@ function Dashboard({ refreshToken = 0, isVisible = true }) {
                   const sc = STATUS_COLOR[a.status] || STATUS_COLOR.Pending;
                   return (
                     <div className="db-appt-row" key={i}>
-                      <div className="db-appt-avatar">{a.patient_name.charAt(0).toUpperCase()}</div>
+                      <div className="db-appt-avatar">{(a.patient_name || "?").charAt(0).toUpperCase()}</div>
                       <div className="db-appt-info">
-                        <span className="db-appt-name">{a.patient_name}</span>
+                        <span className="db-appt-name">{a.patient_name || "Unknown"}</span>
                         <span className="db-appt-service">{a.date}</span>
                       </div>
                       <span className="db-appt-status" style={{ background: sc.bg, color: sc.text }}>
