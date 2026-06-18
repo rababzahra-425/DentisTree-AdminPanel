@@ -227,7 +227,7 @@ import Settings from "./components/Settings";
 import AdminLayout from "./components/admin/AdminLayout";
 import { API_BASE, ensureCsrf, fetchCurrentUser } from "./api";
 import "./App.css";
-import "./theme.css";
+import "./Theme.css";
 import "./admin-responsive.css";
 
 function App() {
