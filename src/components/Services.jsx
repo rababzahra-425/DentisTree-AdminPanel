@@ -437,7 +437,7 @@ export default function Services() {
 
       <div className="tablecontainer">
         {/* Table header */}
-        <div className="table-header-griidd srv-grid-cols">
+        <div className="table-header-grriidd srv-grid-cols">
   <span>IMAGE</span>
   <span>SERVICE</span>
   <span>SERVICE INFO</span>

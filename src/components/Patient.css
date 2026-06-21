@@ -98,12 +98,13 @@
 
 /* ── Page shell ─────────────────────────────────── */
 .pt-page {
-  font-family: var(--pt-font);
+  /* font-family: var(--pt-font); */
   background: var(--pt-page-shell-bg);
   min-height: 100vh;
   padding: 28px 32px;
   color: var(--pt-text);
   box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
 
 /* ── Top bar ────────────────────────────────────── */
@@ -129,7 +130,19 @@
   color: var(--pt-text-muted);
   margin: 0;
 }
-
+.table-header-griddd {
+    margin-bottom: 10px;
+    background-color: #dce6f0;
+    display: grid;
+    padding: 10px 25px;
+    color: #000000;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 14px;
+    font-weight: bolder;
+    font-family: 'Inter', sans-serif;
+}
 .pt-btn-add {
   display: inline-flex;
   align-items: center;
@@ -579,7 +592,7 @@
 
 /* ── Hero header band ── */
 .pt-view-hero {
-  background: linear-gradient(135deg, #1d4ed8 0%, #2a7894 100%);
+  background: linear-gradient(135deg, #1d4ed8 0%, #4173bf 100%);
   padding: 28px 24px 24px;
   display: flex;
   align-items: center;
@@ -800,10 +813,10 @@
 .pt-view-action-btn:active { transform: scale(0.97); }
 
 .pt-view-btn--edit {
-  background: var(--pt-teal);
+  background:#2563eb;
   color: #fff;
 }
-.pt-view-btn--edit:hover { background: #0b8278; }
+.pt-view-btn--edit:hover { background: #6187f0; }
 
 .pt-view-btn--close {
   background: var(--pt-border-soft);
@@ -838,6 +851,7 @@
 [data-theme="dark"] .pt-view-btn--close:hover {
   background: #475569;
 }
+
 
 /* ── Responsive ── */
 @media (max-width: 520px) {

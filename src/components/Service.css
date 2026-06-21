@@ -10,7 +10,7 @@
   padding: 28px 32px;
   background-color: #eef7ff;
   min-height: 100vh;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 /* ─── HEADER ─── */
@@ -91,13 +91,13 @@
 }
 
 /* ─── TABLE HEADER GRID ─── */
-.table-header-griidd {
+.table-header-grriidd {
   display: grid;
   padding: 10px 25px;
   background: #f8fafc;
   border-bottom: 1px solid #e8ecf4;
   font-size: 12px;
-  font-weight: bolder;
+  font-weight: 800;
   color: black;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -643,7 +643,7 @@
     align-items: center;
     padding: 2px 8px;
     border-radius: 20px;
-    background: #1a3117;
+    background: #040925;
     color: #105c2c;
     font-size: 11px;
     font-weight: 500;

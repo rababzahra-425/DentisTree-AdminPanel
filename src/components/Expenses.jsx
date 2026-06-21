@@ -511,7 +511,7 @@ function Expenses() {
 
   const monthLabel = new Date(selectedMonth + "-01").toLocaleDateString("en-US", { month: "long", year: "numeric" });
 
-  if (loading) return <div className="exp-loading">Loading financial summary...</div>;
+  if (loading) return <div className="exp-loading">Loading expenses summary...</div>;
 
   const breakdown = summary?.breakdown?.by_category || {};
   const totalExpenses = summary?.total_expenses || 0;
@@ -625,7 +625,7 @@ function Expenses() {
     <div className="exp-container" ref={printRef}>
 
       <div className="exp-header no-print-hide">
-        <h2>Expenses &amp; Financial Report</h2>
+        <h2>Expenses Report</h2>
         <div className="exp-header-actions">
           <button className="exp-print-btn " onClick={handlePrint}>
             <i className="bi bi-printer-fill" /> Print Report

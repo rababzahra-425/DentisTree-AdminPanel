@@ -69,14 +69,17 @@
   --pay-shadow-lg:   0 12px 24px rgba(0, 0, 0, 0.6);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
 
 .pay-page {
   font-family: var(--pay-font);
-  background: var(--pay-bg);
+  background: #eef7ff;
   min-height: 100vh;
   color: var(--pay-text);
   padding-bottom: 5rem;
+}
+[data-theme="dark"] .pay-page--close:hover {
+  background:#0f172a;
 }
 
 /* ── Loading ──────────────────────────────────────────── */
@@ -178,7 +181,7 @@
   border: none;
   transition: all .2s;
 }
-.pay-btn--primary { background: var(--pay-navy); color: #fff; }
+.pay-btn--primary { background: #2563eb; color: #fff; }
 .pay-btn--primary:hover { background: var(--pay-navy-mid); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15,45,74,.25); }
 
 .pay-btn--green { background: var(--pay-green); color: #fff; }
@@ -225,7 +228,8 @@
 
 .pay-identity-stripe {
   height: 5px;
-  background: linear-gradient(90deg, var(--pay-navy) 0%, #2563eb 50%, var(--pay-green-mid) 100%);
+  /* background: linear-gradient(90deg, var(--pay-navy) 0%, #2563eb 50%, var(--pay-green-mid) 100%); */
+  background-color: #2563eb;
 }
 
 .pay-identity-body {
@@ -238,7 +242,8 @@
 .pay-identity-avatar {
   width: 56px; height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--pay-blue-pale), var(--pay-navy));
+  /* background: linear-gradient(135deg, var(--pay-blue-pale), var(--pay-navy)); */
+  background: linear-gradient(135deg, #c8d8ed, #227acf);
   color: #fff;
   font-family: var(--pay-display);
   font-size: 1.5rem;
@@ -426,7 +431,7 @@
 }
 .pay-onboard-icon {
   width: 68px; height: 68px;
-  background: linear-gradient(135deg, var(--pay-blue-pale), var(--pay-green-pale));
+  background-color: #DBEAFE;
   border-radius: 50%;
   display: flex;
   align-items: center;

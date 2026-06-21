@@ -10,7 +10,7 @@
   padding: 28px 32px;
   background: #f0f4ff;
   min-height: 100vh;
-  font-family: 'DM Sans', sans-serif;
+  font-family:'Inter', sans-serif;
 }
 
 /* ─── HEADER ─── */
@@ -98,7 +98,7 @@
   background-color: #dce6f0;
   border-bottom: 1px solid #e8ecf4;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
   color: #0f172a;
   letter-spacing: 0.07em;
   text-transform: uppercase;
