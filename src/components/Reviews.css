@@ -22,11 +22,11 @@
 }
  
 .rv-total {
-    background: #e5e5e56b;
-    color: black;
-    border: 2px solid rgb(155, 154, 154);
+    background: #2563ef;
+    color: white;
+    /* border: 2px solid rgb(155, 154, 154); */
     font-size: 12px;
-    padding: 4px 12px;
+    padding: 9px 18px;
     border-radius: 10px;
 }
 
